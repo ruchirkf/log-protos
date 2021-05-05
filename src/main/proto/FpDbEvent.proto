@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package model;
+
+option java_package = "com.kloudfuse.log4j2.model.proto";
+
+message FpDbEvent {
+  string fingerprintHash = 1;
+  string fingerprintStr = 2;
+  map<string, int32> paramIndicesByName = 3;
+  map<string, string> paramTypesByName = 4;
+  string partitionKey = 5;
+}

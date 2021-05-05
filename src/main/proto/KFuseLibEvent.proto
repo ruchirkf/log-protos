@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package model;
+
+option java_package = "com.kloudfuse.log4j2.model.proto";
+
+
+message KFuseLibEvent {
+  int64 timeMillis = 1;
+  string loggerName = 2;
+  string platform = 3;
+  string loggingLibrary = 4;
+  Message message = 5;
+  string level = 6;
+  string threadName = 7;
+  map<string, string> tags = 8;
+  repeated ExceptionInfo exceptionInfoList = 9;
+  repeated Breadcrumb breadcrumbs = 10;
+}
+
+message Breadcrumb {
+  string level = 1;
+  string message = 2;
+  int64 timeMillis = 3;
+  map<string, string> tags = 4;
+}
+
+
+
+message Message {
+  string message = 1;
+  string formattedMessage = 2;
+  repeated string formatParams = 3;
+}
+
+message ExceptionInfo {
+  string value = 1;
+  string module = 2;
+  repeated StackTraceInfo stackTraceInfos = 3;
+  string type = 4;
+}
+
+message StackTraceInfo {
+  string module = 1;
+  int32 lineNumber = 2;
+  int32 colNumber = 3;
+  string absPath = 4;
+  string function = 5;
+  string fileName = 6;
+  bool aNative = 7;
+}
